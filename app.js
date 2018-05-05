@@ -1,4 +1,4 @@
-var topics = ['Mountain biking', 'Snowboarding', 'Skiing', 'Rock Climbing'];
+var topics = ['Biology', 'Math', 'Grammar', 'Chemistry'];
 
 function renderButtons() {
 
@@ -25,17 +25,13 @@ function displayGiphy() {
     }).then(function (response) {
         console.log(response);
 
-
-        for (var i = 0; i < 12; i++) {
-
-            var animate = response.data[i].images.fixed_height.url;
-            var still = response.data[i].images.fixed_height_still.url;
-
-            var a = $('<div class=col-lg-4><img class="gif" data-still="'+response.data[i].images.fixed_height_still.url+'" data-animate="'+ response.data[i].images.fixed_height.url+'"data-state="still" src="' + still + '"/>' + '<h7>Rated: ' + response.data[i].rating.toUpperCase() + '</h7><div>');
-            $('#giphy-view').append(a);
-
-            
-
+            for (var i = 0; i < 12; i++) {
+                if(response.data[i].rating === 'g' || response.data[i].rating === 'pg') {
+                var animate = response.data[i].images.fixed_height.url;
+                var still = response.data[i].images.fixed_height_still.url;
+                var a = $('<div class=col-lg-4><img class="gif" data-still="'+response.data[i].images.fixed_height_still.url+'" data-animate="'+ response.data[i].images.fixed_height.url+'"data-state="still" src="' + still + '"/>' + '<h7>Rated: ' + response.data[i].rating.toUpperCase() +'<br> <a href="'+animate+'" download>Download</a></h7><div>');
+                $('#giphy-view').append(a);
+            }
         }
     });
 }
@@ -50,7 +46,10 @@ $(document).ready(function () {
         if (state === 'still') {
             $(this).attr("src", $(this).attr('data-animate'));
             $(this).attr("data-state", "animate");
-        } 
+        } else if (state === 'animate'){
+            $(this).attr("src", $(this).attr('data-still'));
+            $(this).attr("data-state", "still");
+        }
     })
 
     $("#add-category-button").on("click", function (event) {
@@ -59,7 +58,7 @@ $(document).ready(function () {
         topics.push(newCategory);
         renderButtons();
     });
-    
+
     $('body').on("click", ".category", displayGiphy);
 
 });
