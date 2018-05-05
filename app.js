@@ -17,7 +17,7 @@ function displayGiphy() {
 
     $("#giphy-view").empty();
     var category = $(this).attr("data-name");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + category + "&api_key=zKbNlUuAkZ7Gxlzay7vvDmszUDcm0AVF";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + category + "&api_key=zKbNlUuAkZ7Gxlzay7vvDmszUDcm0AVF";
 
     $.ajax({
         url: queryURL,
