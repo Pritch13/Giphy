@@ -6,7 +6,7 @@ function renderButtons() {
 
     for (var i = 0; i < topics.length; i++) {
         var a = $("<button>");
-        a.addClass("category btn btn-primary");
+        a.addClass("category btn btn-link");
         a.attr("data-name", topics[i]);
         a.text(topics[i]);
         $("#buttons-view").append(a);

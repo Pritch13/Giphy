@@ -147,7 +147,17 @@ form{
     border-radius: 22px;
 }
 
+.btn-link {
+  font-size: 25px;
+}
+
 #category-input {
     border-radius: 22px;
+}
+
+footer {
+  position:fixed;
+  bottom:0;
+  left:0;
 }
 
