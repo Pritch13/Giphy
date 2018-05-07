@@ -29,7 +29,7 @@ function displayGiphy() {
                 if(response.data[i].rating === 'g' || response.data[i].rating === 'pg') {
                 var animate = response.data[i].images.fixed_height.url;
                 var still = response.data[i].images.fixed_height_still.url;
-                var a = $('<div class=col-lg-4><img class="gif" data-still="'+response.data[i].images.fixed_height_still.url+'" data-animate="'+ response.data[i].images.fixed_height.url+'"data-state="still" src="' + still + '"/>' + '<h7>Rated: ' + response.data[i].rating.toUpperCase() +'<br> <a href="'+animate+'" download>Download</a></h7><div>');
+                var a = $('<div class=col-lg-4><img class="gif" data-still="'+response.data[i].images.fixed_height_still.url+'" data-animate="'+ response.data[i].images.fixed_height.url+'"data-state="still" src="' + still + '"/>' + '<h7>Rated: ' + response.data[i].rating.toUpperCase() +'<br></h7><div>');
                 $('#giphy-view').append(a);
             }
         }
@@ -57,6 +57,7 @@ $(document).ready(function () {
         var newCategory = $("#category-input").val().trim();
         topics.push(newCategory);
         renderButtons();
+        $('#category-input').val("");
     });
 
     $('body').on("click", ".category", displayGiphy);
